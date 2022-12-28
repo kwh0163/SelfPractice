@@ -1,20 +1,32 @@
-﻿// SelfPractice.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-//
+﻿#include<iostream>
+#include<vector>
+using namespace std;
 
-#include <iostream>
+int main() {
+	vector<int> TestVec;
+	//reserve
+	//메모리 충돌이 일어나지 않도록 capacity를 지정해주는 함수
+	TestVec.reserve(10);
 
-int main()
-{
-    std::cout << "Hello World!\n";
+	//push_back
+	//capacity가 충분할 때 O(1), push_front는 O(n)
+	TestVec.push_back(1);
+	TestVec.push_back(2);
+
+	//new[], delete[], malloc, free는 memory leak이 일어날 수 있어서 사용하지 않는 편이 좋음
+	
+	//vector에 object를 넣을 때 Lvalue라면 copy, Rvalue라면 move시킴
+
+	//emplace_back
+	//move, copy없이 바로 넣어주기 때문에 push_back보다 빠름
+	TestVec.emplace_back(3);
+
+	int a = 10;
+	TestVec.emplace_back(move(a));
+	a = 5;
+	cout << TestVec[3];
+	
+	
+
+	return 0;
 }
-
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
-
-// 시작을 위한 팁: 
-//   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
-//   2. [팀 탐색기] 창을 사용하여 소스 제어에 연결합니다.
-//   3. [출력] 창을 사용하여 빌드 출력 및 기타 메시지를 확인합니다.
-//   4. [오류 목록] 창을 사용하여 오류를 봅니다.
-//   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
-//   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.
